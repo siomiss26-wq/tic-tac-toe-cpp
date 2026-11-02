@@ -84,6 +84,30 @@ int main() {
             cout << "Gano el jugador " << ficha << endl;
             break;
         }
+
+        // reviso si gano en alguna columna
+        if (tablero[0][0] == ficha && tablero[1][0] == ficha && tablero[2][0] == ficha) {
+            cout << "Gano el jugador " << ficha << endl;
+            break;
+        }
+        if (tablero[0][1] == ficha && tablero[1][1] == ficha && tablero[2][1] == ficha) {
+            cout << "Gano el jugador " << ficha << endl;
+            break;
+        }
+        if (tablero[0][2] == ficha && tablero[1][2] == ficha && tablero[2][2] == ficha) {
+            cout << "Gano el jugador " << ficha << endl;
+            break;
+        }
+
+        // reviso las diagonales
+        if (tablero[0][0] == ficha && tablero[1][1] == ficha && tablero[2][2] == ficha) {
+            cout << "Gano el jugador " << ficha << endl;
+            break;
+        }
+        if (tablero[0][2] == ficha && tablero[1][1] == ficha && tablero[2][0] == ficha) {
+            cout << "Gano el jugador " << ficha << endl;
+            break;
+        }
     }
 
     mostrarTablero();
