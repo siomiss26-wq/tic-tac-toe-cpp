@@ -31,8 +31,7 @@ int main() {
     cout << "Tic Tac Toe" << endl;
     cout << "Juego para dos personas" << endl;
 
-    // dos jugadas para probar que cambia el turno
-    for (int jugada = 0; jugada < 2; jugada++) {
+    for (int jugada = 0; jugada < 9; jugada++) {
         mostrarTablero();
 
         char ficha;
@@ -42,9 +41,21 @@ int main() {
             ficha = 'O';
         }
 
-        int posicion;
-        cout << "Jugador " << ficha << ", elige una casilla del 1 al 9: ";
-        cin >> posicion;
+        // pido la casilla hasta que sea un numero del 1 al 9
+        int posicion = 0;
+        while (posicion < 1 || posicion > 9) {
+            cout << "Jugador " << ficha << ", elige una casilla del 1 al 9: ";
+            cin >> posicion;
+
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                posicion = 0;
+                cout << "Eso no es un numero" << endl;
+            } else if (posicion < 1 || posicion > 9) {
+                cout << "Esa casilla no existe, tiene que ser del 1 al 9" << endl;
+            }
+        }
 
         // paso el numero de casilla a fila y columna
         int fila = (posicion - 1) / 3;
