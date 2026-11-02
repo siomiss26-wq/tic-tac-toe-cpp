@@ -27,6 +27,21 @@ void mostrarTablero() {
     cout << endl;
 }
 
+// vuelve a poner los numeros en el tablero
+void reiniciarTablero() {
+    char numeros[3][3] = {
+        {'1', '2', '3'},
+        {'4', '5', '6'},
+        {'7', '8', '9'}
+    };
+
+    for (int fila = 0; fila < 3; fila++) {
+        for (int col = 0; col < 3; col++) {
+            tablero[fila][col] = numeros[fila][col];
+        }
+    }
+}
+
 // revisa si la ficha gano en filas, columnas o diagonales
 bool hayGanador(char ficha) {
     for (int i = 0; i < 3; i++) {
@@ -96,6 +111,9 @@ int main() {
     char respuesta;
 
     do {
+        // limpio el tablero antes de empezar cada partida
+        reiniciarTablero();
+
         bool huboGanador = false;
 
         for (int jugada = 0; jugada < 9; jugada++) {
