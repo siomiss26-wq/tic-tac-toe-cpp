@@ -27,6 +27,27 @@ void mostrarTablero() {
     cout << endl;
 }
 
+// revisa si la ficha gano en filas, columnas o diagonales
+bool hayGanador(char ficha) {
+    for (int i = 0; i < 3; i++) {
+        if (tablero[i][0] == ficha && tablero[i][1] == ficha && tablero[i][2] == ficha) {
+            return true;
+        }
+        if (tablero[0][i] == ficha && tablero[1][i] == ficha && tablero[2][i] == ficha) {
+            return true;
+        }
+    }
+
+    if (tablero[0][0] == ficha && tablero[1][1] == ficha && tablero[2][2] == ficha) {
+        return true;
+    }
+    if (tablero[0][2] == ficha && tablero[1][1] == ficha && tablero[2][0] == ficha) {
+        return true;
+    }
+
+    return false;
+}
+
 int main() {
     cout << "Tic Tac Toe" << endl;
     cout << "Juego para dos personas" << endl;
@@ -73,47 +94,8 @@ int main() {
 
         tablero[fila][col] = ficha;
 
-        // reviso si gano en alguna fila
-        if (tablero[0][0] == ficha && tablero[0][1] == ficha && tablero[0][2] == ficha) {
-            cout << "Gano el jugador " << ficha << endl;
-            huboGanador = true;
-            break;
-        }
-        if (tablero[1][0] == ficha && tablero[1][1] == ficha && tablero[1][2] == ficha) {
-            cout << "Gano el jugador " << ficha << endl;
-            huboGanador = true;
-            break;
-        }
-        if (tablero[2][0] == ficha && tablero[2][1] == ficha && tablero[2][2] == ficha) {
-            cout << "Gano el jugador " << ficha << endl;
-            huboGanador = true;
-            break;
-        }
-
-        // reviso si gano en alguna columna
-        if (tablero[0][0] == ficha && tablero[1][0] == ficha && tablero[2][0] == ficha) {
-            cout << "Gano el jugador " << ficha << endl;
-            huboGanador = true;
-            break;
-        }
-        if (tablero[0][1] == ficha && tablero[1][1] == ficha && tablero[2][1] == ficha) {
-            cout << "Gano el jugador " << ficha << endl;
-            huboGanador = true;
-            break;
-        }
-        if (tablero[0][2] == ficha && tablero[1][2] == ficha && tablero[2][2] == ficha) {
-            cout << "Gano el jugador " << ficha << endl;
-            huboGanador = true;
-            break;
-        }
-
-        // reviso las diagonales
-        if (tablero[0][0] == ficha && tablero[1][1] == ficha && tablero[2][2] == ficha) {
-            cout << "Gano el jugador " << ficha << endl;
-            huboGanador = true;
-            break;
-        }
-        if (tablero[0][2] == ficha && tablero[1][1] == ficha && tablero[2][0] == ficha) {
+        // si hay ganador lo aviso y salgo del ciclo
+        if (hayGanador(ficha)) {
             cout << "Gano el jugador " << ficha << endl;
             huboGanador = true;
             break;
