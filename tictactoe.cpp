@@ -31,6 +31,8 @@ int main() {
     cout << "Tic Tac Toe" << endl;
     cout << "Juego para dos personas" << endl;
 
+    bool huboGanador = false;
+
     for (int jugada = 0; jugada < 9; jugada++) {
         mostrarTablero();
 
@@ -74,40 +76,53 @@ int main() {
         // reviso si gano en alguna fila
         if (tablero[0][0] == ficha && tablero[0][1] == ficha && tablero[0][2] == ficha) {
             cout << "Gano el jugador " << ficha << endl;
+            huboGanador = true;
             break;
         }
         if (tablero[1][0] == ficha && tablero[1][1] == ficha && tablero[1][2] == ficha) {
             cout << "Gano el jugador " << ficha << endl;
+            huboGanador = true;
             break;
         }
         if (tablero[2][0] == ficha && tablero[2][1] == ficha && tablero[2][2] == ficha) {
             cout << "Gano el jugador " << ficha << endl;
+            huboGanador = true;
             break;
         }
 
         // reviso si gano en alguna columna
         if (tablero[0][0] == ficha && tablero[1][0] == ficha && tablero[2][0] == ficha) {
             cout << "Gano el jugador " << ficha << endl;
+            huboGanador = true;
             break;
         }
         if (tablero[0][1] == ficha && tablero[1][1] == ficha && tablero[2][1] == ficha) {
             cout << "Gano el jugador " << ficha << endl;
+            huboGanador = true;
             break;
         }
         if (tablero[0][2] == ficha && tablero[1][2] == ficha && tablero[2][2] == ficha) {
             cout << "Gano el jugador " << ficha << endl;
+            huboGanador = true;
             break;
         }
 
         // reviso las diagonales
         if (tablero[0][0] == ficha && tablero[1][1] == ficha && tablero[2][2] == ficha) {
             cout << "Gano el jugador " << ficha << endl;
+            huboGanador = true;
             break;
         }
         if (tablero[0][2] == ficha && tablero[1][1] == ficha && tablero[2][0] == ficha) {
             cout << "Gano el jugador " << ficha << endl;
+            huboGanador = true;
             break;
         }
+    }
+
+    // si nadie gano es porque se lleno el tablero
+    if (huboGanador == false) {
+        cout << "Empate, ya no quedan casillas" << endl;
     }
 
     mostrarTablero();
