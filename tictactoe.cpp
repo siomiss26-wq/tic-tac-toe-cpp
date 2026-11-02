@@ -1,3 +1,7 @@
+// Tic Tac Toe en C++
+// Mini proyecto de Programacion Dinamica
+// Juego de dos jugadores en la consola
+
 #include <iostream>
 using namespace std;
 
@@ -13,9 +17,9 @@ void mostrarTablero() {
     cout << endl;
     for (int fila = 0; fila < 3; fila++) {
         cout << " ";
-        for (int col = 0; col < 3; col++) {
-            cout << tablero[fila][col];
-            if (col < 2) {
+        for (int columna = 0; columna < 3; columna++) {
+            cout << tablero[fila][columna];
+            if (columna < 2) {
                 cout << " | ";
             }
         }
@@ -36,19 +40,19 @@ void reiniciarTablero() {
     };
 
     for (int fila = 0; fila < 3; fila++) {
-        for (int col = 0; col < 3; col++) {
-            tablero[fila][col] = numeros[fila][col];
+        for (int columna = 0; columna < 3; columna++) {
+            tablero[fila][columna] = numeros[fila][columna];
         }
     }
 }
 
 // revisa si la ficha gano en filas, columnas o diagonales
 bool hayGanador(char ficha) {
-    for (int i = 0; i < 3; i++) {
-        if (tablero[i][0] == ficha && tablero[i][1] == ficha && tablero[i][2] == ficha) {
+    for (int numero = 0; numero < 3; numero++) {
+        if (tablero[numero][0] == ficha && tablero[numero][1] == ficha && tablero[numero][2] == ficha) {
             return true;
         }
-        if (tablero[0][i] == ficha && tablero[1][i] == ficha && tablero[2][i] == ficha) {
+        if (tablero[0][numero] == ficha && tablero[1][numero] == ficha && tablero[2][numero] == ficha) {
             return true;
         }
     }
@@ -91,17 +95,17 @@ void pedirJugada(char ficha) {
 
     // paso el numero de casilla a fila y columna
     int fila = (posicion - 1) / 3;
-    int col = (posicion - 1) % 3;
+    int columna = (posicion - 1) % 3;
 
     // si la casilla ya esta ocupada pido otra
-    while (tablero[fila][col] == 'X' || tablero[fila][col] == 'O') {
+    while (tablero[fila][columna] == 'X' || tablero[fila][columna] == 'O') {
         cout << "Esa casilla ya esta ocupada, elige otra del 1 al 9: ";
         cin >> posicion;
         fila = (posicion - 1) / 3;
-        col = (posicion - 1) % 3;
+        columna = (posicion - 1) % 3;
     }
 
-    tablero[fila][col] = ficha;
+    tablero[fila][columna] = ficha;
 }
 
 int main() {
