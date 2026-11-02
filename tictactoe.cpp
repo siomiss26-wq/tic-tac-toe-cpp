@@ -70,6 +70,20 @@ int main() {
         }
 
         tablero[fila][col] = ficha;
+
+        // reviso si gano en alguna fila
+        if (tablero[0][0] == ficha && tablero[0][1] == ficha && tablero[0][2] == ficha) {
+            cout << "Gano el jugador " << ficha << endl;
+            break;
+        }
+        if (tablero[1][0] == ficha && tablero[1][1] == ficha && tablero[1][2] == ficha) {
+            cout << "Gano el jugador " << ficha << endl;
+            break;
+        }
+        if (tablero[2][0] == ficha && tablero[2][1] == ficha && tablero[2][2] == ficha) {
+            cout << "Gano el jugador " << ficha << endl;
+            break;
+        }
     }
 
     mostrarTablero();
