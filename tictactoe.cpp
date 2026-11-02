@@ -60,6 +60,15 @@ int main() {
         // paso el numero de casilla a fila y columna
         int fila = (posicion - 1) / 3;
         int col = (posicion - 1) % 3;
+
+        // si la casilla ya esta ocupada pido otra
+        while (tablero[fila][col] == 'X' || tablero[fila][col] == 'O') {
+            cout << "Esa casilla ya esta ocupada, elige otra del 1 al 9: ";
+            cin >> posicion;
+            fila = (posicion - 1) / 3;
+            col = (posicion - 1) % 3;
+        }
+
         tablero[fila][col] = ficha;
     }
 
