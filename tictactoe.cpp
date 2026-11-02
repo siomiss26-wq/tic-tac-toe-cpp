@@ -48,6 +48,47 @@ bool hayGanador(char ficha) {
     return false;
 }
 
+// devuelve la ficha que le toca segun el numero de jugada
+char turno(int jugada) {
+    if (jugada % 2 == 0) {
+        return 'X';
+    }
+    return 'O';
+}
+
+// pide una casilla libre y la marca con la ficha
+void pedirJugada(char ficha) {
+    // pido la casilla hasta que sea un numero del 1 al 9
+    int posicion = 0;
+    while (posicion < 1 || posicion > 9) {
+        cout << "Jugador " << ficha << ", elige una casilla del 1 al 9: ";
+        cin >> posicion;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            posicion = 0;
+            cout << "Eso no es un numero" << endl;
+        } else if (posicion < 1 || posicion > 9) {
+            cout << "Esa casilla no existe, tiene que ser del 1 al 9" << endl;
+        }
+    }
+
+    // paso el numero de casilla a fila y columna
+    int fila = (posicion - 1) / 3;
+    int col = (posicion - 1) % 3;
+
+    // si la casilla ya esta ocupada pido otra
+    while (tablero[fila][col] == 'X' || tablero[fila][col] == 'O') {
+        cout << "Esa casilla ya esta ocupada, elige otra del 1 al 9: ";
+        cin >> posicion;
+        fila = (posicion - 1) / 3;
+        col = (posicion - 1) % 3;
+    }
+
+    tablero[fila][col] = ficha;
+}
+
 int main() {
     cout << "Tic Tac Toe" << endl;
     cout << "Juego para dos personas" << endl;
@@ -57,42 +98,8 @@ int main() {
     for (int jugada = 0; jugada < 9; jugada++) {
         mostrarTablero();
 
-        char ficha;
-        if (jugada % 2 == 0) {
-            ficha = 'X';
-        } else {
-            ficha = 'O';
-        }
-
-        // pido la casilla hasta que sea un numero del 1 al 9
-        int posicion = 0;
-        while (posicion < 1 || posicion > 9) {
-            cout << "Jugador " << ficha << ", elige una casilla del 1 al 9: ";
-            cin >> posicion;
-
-            if (cin.fail()) {
-                cin.clear();
-                cin.ignore(1000, '\n');
-                posicion = 0;
-                cout << "Eso no es un numero" << endl;
-            } else if (posicion < 1 || posicion > 9) {
-                cout << "Esa casilla no existe, tiene que ser del 1 al 9" << endl;
-            }
-        }
-
-        // paso el numero de casilla a fila y columna
-        int fila = (posicion - 1) / 3;
-        int col = (posicion - 1) % 3;
-
-        // si la casilla ya esta ocupada pido otra
-        while (tablero[fila][col] == 'X' || tablero[fila][col] == 'O') {
-            cout << "Esa casilla ya esta ocupada, elige otra del 1 al 9: ";
-            cin >> posicion;
-            fila = (posicion - 1) / 3;
-            col = (posicion - 1) % 3;
-        }
-
-        tablero[fila][col] = ficha;
+        char ficha = turno(jugada);
+        pedirJugada(ficha);
 
         // si hay ganador lo aviso y salgo del ciclo
         if (hayGanador(ficha)) {
