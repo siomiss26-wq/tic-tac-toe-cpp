@@ -93,28 +93,38 @@ int main() {
     cout << "Tic Tac Toe" << endl;
     cout << "Juego para dos personas" << endl;
 
-    bool huboGanador = false;
+    char respuesta;
 
-    for (int jugada = 0; jugada < 9; jugada++) {
+    do {
+        bool huboGanador = false;
+
+        for (int jugada = 0; jugada < 9; jugada++) {
+            mostrarTablero();
+
+            char ficha = turno(jugada);
+            pedirJugada(ficha);
+
+            // si hay ganador lo aviso y salgo del ciclo
+            if (hayGanador(ficha)) {
+                cout << "Gano el jugador " << ficha << endl;
+                huboGanador = true;
+                break;
+            }
+        }
+
+        // si nadie gano es porque se lleno el tablero
+        if (huboGanador == false) {
+            cout << "Empate, ya no quedan casillas" << endl;
+        }
+
         mostrarTablero();
 
-        char ficha = turno(jugada);
-        pedirJugada(ficha);
+        cout << "Quieres jugar otra vez? (s/n): ";
+        cin >> respuesta;
 
-        // si hay ganador lo aviso y salgo del ciclo
-        if (hayGanador(ficha)) {
-            cout << "Gano el jugador " << ficha << endl;
-            huboGanador = true;
-            break;
-        }
-    }
+    } while (respuesta == 's' || respuesta == 'S');
 
-    // si nadie gano es porque se lleno el tablero
-    if (huboGanador == false) {
-        cout << "Empate, ya no quedan casillas" << endl;
-    }
-
-    mostrarTablero();
+    cout << "Gracias por jugar" << endl;
 
     return 0;
 }
