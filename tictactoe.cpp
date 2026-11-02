@@ -31,16 +31,26 @@ int main() {
     cout << "Tic Tac Toe" << endl;
     cout << "Juego para dos personas" << endl;
 
-    mostrarTablero();
+    // dos jugadas para probar que cambia el turno
+    for (int jugada = 0; jugada < 2; jugada++) {
+        mostrarTablero();
 
-    int posicion;
-    cout << "Jugador X, elige una casilla del 1 al 9: ";
-    cin >> posicion;
+        char ficha;
+        if (jugada % 2 == 0) {
+            ficha = 'X';
+        } else {
+            ficha = 'O';
+        }
 
-    // paso el numero de casilla a fila y columna
-    int fila = (posicion - 1) / 3;
-    int col = (posicion - 1) % 3;
-    tablero[fila][col] = 'X';
+        int posicion;
+        cout << "Jugador " << ficha << ", elige una casilla del 1 al 9: ";
+        cin >> posicion;
+
+        // paso el numero de casilla a fila y columna
+        int fila = (posicion - 1) / 3;
+        int col = (posicion - 1) % 3;
+        tablero[fila][col] = ficha;
+    }
 
     mostrarTablero();
 
