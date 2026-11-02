@@ -1,0 +1,6 @@
+# archivos que no se suben
+*.exe
+*.o
+tictactoe
+a.out
+build/
